@@ -258,9 +258,10 @@ commit_all_file()
 {
     message="$1"
     # Create a list of changed files to log.
-    find . -mindepth 1 -not -path "./.bku/*" -type f | while read file_path
+	file_list=()
+	for file_pwd in $(find . -type f ! -path "./.bku/*")
     do
-        file_name=$(basename "$file_path")
+        file_name=$(basename "$file_pwd")
         # Flag variable for checking.
         found=false
         for file in ".bku/tracked_files"/*
@@ -271,33 +272,20 @@ commit_all_file()
                 found=true
             fi
             # If there is no changes between two files.
-            if [ "$found" = "true" ] && diff -q "$file" "$file_path" > /dev/null
+            if [ "$found" = "true" ] && diff -q "$file" "$file_pwd" > /dev/null
             then
                 break
             # If there are changes between two files.
-            elif [ "$found" = "true" ] && ! diff -q "$file" "$file_path" > /dev/null
+            elif [ "$found" = "true" ] && ! diff -q "$file" "$file_pwd" > /dev/null
             then
                 # Saving changes into diff file.
-                save_diff "$file" "$file_path"
+                save_diff "$file" "$file_pwd"
                 # Print to terminal
                 commit_id=$(date +"%H:%M-%d/%m/%Y")
-                echo "Committed $file_path with ID $commit_id." | awk '{gsub("^\\./", "", $2); print $1, $2, $3, $4, $5}'
+				# Added changed file to the list
+				file_list+=("${file_pwd#./}")
+                echo "Committed $file_pwd with ID $commit_id." | awk '{gsub("^\\./", "", $2); print $1, $2, $3, $4, $5}'
                 break
-            fi
-        done
-    done
-    # Create a list of file.
-    file_list=()
-    # Iterating all of the files excluding .bku.
-    for file_pwd in $(find . -type f ! -path "./.bku/*")
-    do
-        file_name=$(basename "$file_pwd")
-        for file in ".bku/tracked_files"/*
-        do
-            # If there are changes between two files.
-            if [ -e "$file" ] && [ "$file_name" = "$(basename "$file")" ] && ! diff -q "$file" "$file_pwd" > /dev/null
-            then
-                file_list+=("${file_pwd#./}")
             fi
         done
     done
