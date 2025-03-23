@@ -3,8 +3,8 @@
 <i>By <b>HUU THANG NGUYEN.</b></i>
 <h1><b><center>MANUAL</b></h1>
 <h2><b>1. SETUP</b></h2>
-<p><b>bash setup.sh --install:</b> begin installing dependencies and packages.</p>
-<p><b>bash setup.sh --uninstall:</b> begin uninstalling all of dependencies, packages, intialised folders and files.</p>
+<p><b>bash setup.sh --install:</b> Installing dependencies and packages.</p>
+<p><b>bash setup.sh --uninstall:</b> Removing all of dependencies, packages, intialised folders and files at working directory and PATH.</p>
 <h2><b>2. INITIALISING</b></h2>
 <p><b>bku init:</b> Initialise hidden <i>.bku</i> folder, along with <i>tracked_files</i> (storing commited files), <i>diff</i> folders (saving changes) and a history log within the <i>.bku</i> folder.</p>
 <h2><b>3. ADDING</b></h2>
