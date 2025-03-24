@@ -426,6 +426,21 @@ stop()
     fi
 }
 
+manual()
+{
+	echo "bku init: initialise backup folder .bku"
+	echo "bku add (file_path): track the target file."
+	echo "bku add: track all files in current working directory."
+	echo "bku status (file_path): show target file's latest changes."
+	echo "bku status: show files's latest changes after tracked."
+	echo "bku commit (message) (filepath): commit changes on the target file."
+	echo "bku commit (message): commit changes on all of the changed files in current working directory."
+	echo "bku restore (file_path): revert target to it latest changed commit."
+	echo "bku restore: revert all files to their latest changed commit in current working directory."
+	echo "bku schedule: schedule auto commit hourly, daily, weekly."
+	echo "bku stop: remove all of tool's backup system."
+}
+
 if [ "$1" = init ]
 then
 	init
@@ -450,4 +465,6 @@ then
 elif [ "$1" = stop ]
 then
 	stop
+else
+	manual
 fi
