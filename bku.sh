@@ -111,6 +111,10 @@ status()
 
 status_single_file()
 {
+	if [ -z "$(ls -A ".bku/tracked_files")" ]
+	then
+		echo "Error: Nothing has been tracked."
+		exit 1
 	file_path="$1"
 	# Flag variable for checking.
 	found=false
