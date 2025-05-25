@@ -126,16 +126,17 @@ status_single_file()
 		# If there is no changes between two files.
 		if [ "$found" = "true" ] && diff -q "$file" "$file_path" > /dev/null
 		then
-			parent_dir=$(basename "$(dirname "$file_path")")
-            formatted_file="$parent_dir/$file_name"
-           	echo "$formatted_file: No changes"
+			#parent_dir=$(basename "$(dirname "$file_path")")
+            		#formatted_file="$parent_dir/$file_name"
+           		#echo "$formatted_file: No changes"
+           		echo "$file_path: No changes"
 			exit 0
 		# If there are changes between two files.
 		elif [ "$found" = "true" ] && ! diff -q "$file" "$file_path" > /dev/null
 		then
 			parent_dir=$(basename "$(dirname "$file_path")")
-            formatted_file="$parent_dir/$file_name"
-            diff -u "$file" "$file_path" | sed -e "1s|^--- .*$|$formatted_file:|; 2d;"
+            		formatted_file="$parent_dir/$file_name"
+            		diff -u "$file" "$file_path" | sed -e "1s|^--- .*$|$formatted_file:|; 2d;"
 			exit 0
 		fi
 	done
