@@ -12,7 +12,7 @@ init()
 		message="BKU Init."
 		printf "$commit_id: $message\n" >> .bku/history.log
 	else
-		echo "Error: Backup already initialized in folder."
+		echo "Error: Backup already initialized in this folder."
 	fi
 }
 
