@@ -237,7 +237,7 @@ commit_single_file()
         # If there is no changes between two files.
         if [ "$found" = "true" ] && diff -q "$file" "$file_path" > /dev/null
         then
-            echo "Error: $file_path is not changed." | awk '{gsub("^\\./", "", $2); print $1, $2, $3, $4, $5}'
+            echo "Error: No change to commit."
             exit 1
         # If there are changes between two files.
         elif [ "$found" = "true" ] && ! diff -q "$file" "$file_path" > /dev/null
