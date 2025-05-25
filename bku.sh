@@ -20,7 +20,7 @@ check_root()
 {
 	if [ ! -d "$PWD/.bku" ]
 	then
-		echo "Must be BKU root folder."
+		echo "Must be a BKU root folder."
 		exit 1
 	fi
 }
