@@ -128,7 +128,7 @@ status_single_file()
 		then
 			parent_dir=$(basename "$(dirname "$file_path")")
             formatted_file="$parent_dir/$file_name"
-           	echo "$formatted_file: No changes."
+           	echo "$formatted_file: No changes"
 			exit 0
 		# If there are changes between two files.
 		elif [ "$found" = "true" ] && ! diff -q "$file" "$file_path" > /dev/null
