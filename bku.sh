@@ -115,6 +115,7 @@ status_single_file()
 	then
 		echo "Error: Nothing has been tracked."
 		exit 1
+  	fi
 	file_path="$1"
 	# Flag variable for checking.
 	found=false
